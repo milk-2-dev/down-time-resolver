@@ -12,7 +12,10 @@ router.route('/refresh').get(async (req, res) => {
 
   try {
     interval = setTimeout(async () => {
-      await fetch('https://fuel-price-r6f2.onrender.com/api/v1/refresh');
+      await Promise.all([
+        await fetch('https://fuel-price-r6f2.onrender.com/api/v1/refresh'),
+        await fetch('https://cfm-fuelprices.onrender.com/api/v1/refresh')
+      ]);
 
       console.log('Request back was at ', new Date().toISOString());
 
