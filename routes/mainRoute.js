@@ -16,7 +16,7 @@ router.route('/refresh').get(async (req, res) => {
   try {
     timer = setTimeout(async () => {
       await Promise.all([
-        fetch('https://fuel-price-r6f2.onrender.com/api/v1/refresh'),
+        // fetch('https://fuel-price-r6f2.onrender.com/api/v1/refresh'),
         fetch('https://cfm-fuelprices.onrender.com/api/v1/refresh')
       ]);
 
