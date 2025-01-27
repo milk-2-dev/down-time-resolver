@@ -1,6 +1,8 @@
 import express from 'express';
+import * as dotenv from 'dotenv';
 
 const router = express.Router();
+dotenv.config();
 
 let timer = null;
 
@@ -15,10 +17,9 @@ router.route('/refresh').get(async (req, res) => {
 
   try {
     timer = setTimeout(async () => {
-      await Promise.all([
-        // fetch('https://fuel-price-r6f2.onrender.com/api/v1/refresh'),
-        fetch('https://cfm-fuelprices.onrender.com/api/v1/refresh')
-      ]);
+      const apiUrls = JSON.parse(process.env.API_URLS);
+
+      await Promise.all(apiUrls.map(url => fetch(url)));
 
       console.log('Request to api - ', new Date().toISOString());
     }, 1000 * 60 * 5);

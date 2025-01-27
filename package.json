@@ -7,10 +7,13 @@
   "author": "milk <milk00000000000000@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon index"
+    "local": "dotenv -e .env.local nodemon index.js",
+    "dev": "dotenv -e .env.development nodemon index.js",
+    "prod": "dotenv -e .env.production nodemon index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "node-fetch": "^3.3.2"
   },
